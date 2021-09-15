@@ -226,7 +226,7 @@ Health.prototype.query = function (opts, onSuccess, onError) {
       var result = [];
       for (var i = 0; i < data.length; i++) {
         var res = {};
-        res.id = data[i].UUID
+        res.UUID = data[i].UUID;
         res.startDate = new Date(data[i].startDate);
         res.endDate = new Date(data[i].endDate);
         // filter the results based on the dates
@@ -246,7 +246,7 @@ Health.prototype.query = function (opts, onSuccess, onError) {
         window.plugins.healthkit.querySampleType(opts, function (data) {
           for (var i = 0; i < data.length; i++) {
             var res = {};
-            res.id = data[i].UUID
+            res.UUID = data[i].UUID;
             res.startDate = new Date(data[i].startDate);
             res.endDate = new Date(data[i].endDate);
             if (data[i].value == 0) res.value = 'sleep.inBed';
@@ -288,7 +288,7 @@ Health.prototype.query = function (opts, onSuccess, onError) {
       var convertSamples = function (samples) {
         for (var i = 0; i < samples.length; i++) {
           var res = {};
-          res.id = samples[i].UUID
+          res.UUID = samples[i].UUID;
           res.startDate = new Date(samples[i].startDate);
           res.endDate = new Date(samples[i].endDate);
           if (opts.dataType === 'blood_glucose') {
@@ -622,7 +622,7 @@ var convertToGrams = function (fromUnit, q) {
 // refactors the result of a quantity type query into returned type
 var prepareResult = function (data, unit) {
   var res = {
-    id: data.UUID,
+    uuid: data.UUID,
     startDate: new Date(data.startDate),
     endDate: new Date(data.endDate),
     value: data.quantity,
@@ -636,7 +636,7 @@ var prepareResult = function (data, unit) {
 // refactors the result of a correlation query into returned type
 var prepareCorrelation = function (data, dataType) {
   var res = {
-    id: data.UUID,
+    uuid: data.UUID,
     startDate: new Date(data.startDate),
     endDate: new Date(data.endDate),
     value: {}
